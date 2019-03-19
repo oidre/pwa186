@@ -1,0 +1,100 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-searchbar *ngIf="showSearchBar" #search placeholder="Search category" showCancelButton
+      (ionCancel)="onCancel($event)" [(ngModel)]="inputSearch" (ngModelChange)="onSearchInput()"></ion-searchbar>
+    <ion-buttons slot="end" *ngIf="mainToolbar">
+      <ion-button (click)="searchBarToggle()">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="mainToolbar">Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down" pullingText="Pull to refresh" refreshingSpinner="crescent"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-text *ngIf="categoriesNotFound">{{ categoriesNotFound }}</ion-text>
+
+  <!-- Load Content -->
+
+  <div *ngIf="categories">
+    <ion-list>
+      <ion-item-sliding *ngFor="let category of categories" close>
+        <ion-item>
+          <ion-icon slot="start" color="medium" name="pricetag"></ion-icon>
+          <ion-label>{{ category.name }}</ion-label>
+        </ion-item>
+        <ion-item-options side="start">
+          <ion-item-option style="width: 50px" color="default" (click)="onEdit(category.id)">
+            <ion-icon name="create" style="font-size: 1.5em"></ion-icon>
+          </ion-item-option>
+          <ion-item-option style="width: 50px" color="default" (click)="confirmDelete(category.id)">
+            <ion-icon name="trash" style="font-size: 1.5em"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item-options side="end">
+          <div *ngIf="category.active">
+            <ion-toggle checked></ion-toggle>
+          </div>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+  <!-- Load Skeleteon -->
+
+  <div *ngIf="!categories">
+    <ion-list>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+        <ion-label>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+        <ion-label>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+        <ion-label>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+        <ion-label>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+        <ion-label>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button mode="ios" (click)="presentInputModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

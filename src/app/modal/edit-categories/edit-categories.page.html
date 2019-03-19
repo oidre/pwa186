@@ -1,0 +1,28 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onClose()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Category</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="stacked">Initial</ion-label>
+    <ion-input [(ngModel)]="this.category.initial"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Name</ion-label>
+    <ion-input [(ngModel)]="this.category.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Active?</ion-label>
+    <ion-toggle checked [(ngModel)]="this.category.active"></ion-toggle>
+  </ion-item>
+  <ion-button expand="full" shape="round" (click)="onSave()">
+    Save
+  </ion-button>
+</ion-content>

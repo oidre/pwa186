@@ -8,6 +8,42 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'category',
+        children: [
+          {
+            path: '',
+            loadChildren: '../category/category.module#CategoryPageModule'
+          }
+        ]
+      },
+      {
+        path: 'variant',
+        children: [
+          {
+            path: '',
+            loadChildren: '../variant/variant.module#VariantPageModule'
+          }
+        ]
+      },
+      {
+        path: 'variant',
+        children: [
+          {
+            path: '',
+            loadChildren: '../variant/variant.module#VariantPageModule'
+          }
+        ]
+      },
+      {
+        path: 'product',
+        children: [
+          {
+            path: '',
+            loadChildren: '../product/product.module#ProductPageModule'
+          }
+        ]
+      },
+      {
         path: 'tab1',
         children: [
           {
@@ -17,33 +53,15 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
-        children: [
-          {
-            path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
-          }
-        ]
-      },
-      {
-        path: 'tab3',
-        children: [
-          {
-            path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
-          }
-        ]
-      },
-      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/category',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/category',
     pathMatch: 'full'
   }
 ];
